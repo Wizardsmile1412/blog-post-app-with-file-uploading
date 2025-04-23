@@ -35,7 +35,11 @@ function AuthProvider(props) {
 
   // register the user
   const register = async (data) => {
-    await axios.post("http://localhost:4000/auth/register", data);
+    // Step 1: Client ส่ง Request พร้อมไฟล์ไปที่ Server ด้วย Function register
+    // ข้อมูลไฟล์จะถูกเก็บไว้ใน Form Data
+    await axios.post("http://localhost:4000/auth/register", data, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
     navigate("/login");
   };
 
